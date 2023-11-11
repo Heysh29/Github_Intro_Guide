@@ -6,7 +6,7 @@ import ast
 import numpy as np
 
 # Path to the directory containing the files. Change the city to the city you choose.
-directory = 'data/raw/Boston'
+directory = 'data/raw/Amsterdam'
 
 # Initialize an empty list to store the dataframes
 dataframes = []
