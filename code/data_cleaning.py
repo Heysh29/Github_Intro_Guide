@@ -6,26 +6,27 @@ import ast
 import numpy as np
 
 # Path to the directory containing the files. Change the city to the city you choose.
-directory = 'data/raw/Amsterdam'
+directory = 'data/raw/Boston'
 
 # Initialize an empty list to store the dataframes
 dataframes = []
 
 # Loop over the files in the directory
 for filename in os.listdir(directory):
-    if filename.endswith('.csv.gz'):
+    if filename.endswith('.csv'):
         # Extract the date from the filename
-        date = filename.split('_')[1]
+        date = filename.split('_')[0]
 
         # Create the file path
         file_path = os.path.join(directory, filename)
 
         # Read the csv file
-        with gzip.open(file_path, 'rt', encoding='utf-8') as f:
+        with open(file_path, 'rt', encoding='utf-8') as f:
             df = pd.read_csv(f)
-
+            ### as the downloaded data is not end with csv.gz, using open is accessable
             # Append the dataframe to the list
             dataframes.append(df)
+
 
 # Concatenate the dataframes
 all_data = pd.concat(dataframes, ignore_index=True)
@@ -116,7 +117,7 @@ all_data = all_data.fillna(0)
 all_data = all_data.reset_index(drop=True)
 
 # Save the DataFrame to a CSV file without the index
-all_data.to_csv('data/middle/boston_listing.csv', index=False)
+all_data.to_csv('data/middle/Boston_listing.csv', index=False)
 
 
 # Print the number of listings per host

@@ -4,7 +4,7 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
 # Sample data loading for New York listings
-all_data = pd.read_csv('data/middle/ny_listing.csv')
+all_data = pd.read_csv('data/middle/Boston_listing.csv')
 
 # Ensure 'price' is a float and remove any non-numeric characters like dollar signs
 all_data['price'] = all_data['price'].replace('[\$,]', '', regex=True).astype(float)
@@ -85,4 +85,4 @@ for threshold in thresholds:
         plt.text(threshold, max(y_plot) * 0.9, f'RD Estimate = {rd_estimate:.3f}\nSE = {rd_se:.3f}', fontsize=9)
 
         plt.legend()
-        plt.savefig(f'output/figure/rating_rd_{threshold}.png', bbox_inches='tight')
+        plt.savefig(f'output/figure/rating_rd_{threshold}_Boston.png', bbox_inches='tight')
